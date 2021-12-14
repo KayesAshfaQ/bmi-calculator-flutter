@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bmi_calculator/components/bottom_button_widget.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
@@ -58,7 +60,7 @@ class ResultPage extends StatelessWidget {
                             TextStyle(fontSize: 24.0, color: kLightGreyColor),
                       ),
                       Text(
-                        '18.5 - 25 kg/m2',
+                        '18.5 - 25 kg/m\u{00B2}',
                         style: TextStyle(fontSize: 24.0, color: Colors.white),
                       ),
                     ],
