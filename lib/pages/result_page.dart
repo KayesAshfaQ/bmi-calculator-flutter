@@ -4,7 +4,13 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  final String bmiResult, resultText, interpolation;
+
+  ResultPage({
+    required this.bmiResult,
+    required this.resultText,
+    required this.interpolation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +40,14 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'NORMAL',
+                    resultText,
                     style: TextStyle(
                         color: Colors.green,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '18.4',
+                    bmiResult,
                     style: kNumberTextStyle,
                   ),
                   Column(
@@ -57,10 +63,13 @@ class ResultPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    'You have a normal body weight. Good Job!',
-                    style: kResutlDetailsTextStyle,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      interpolation,
+                      style: kResutlDetailsTextStyle,
+                      textAlign: TextAlign.center,
+                    ),
                   )
                 ],
               ),

@@ -22,6 +22,6 @@ const kResultTextStyle = TextStyle(
 );
 
 const kResutlDetailsTextStyle = TextStyle(
-  fontSize: 25.0,
-  fontWeight: FontWeight.w400,
+  fontSize: 20.0,
+  fontWeight: FontWeight.w300,
 );
