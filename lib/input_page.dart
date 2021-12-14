@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'constants.dart';
+import 'widgets/circle_icon_button.dart';
 import 'widgets/icon_widget.dart';
 import 'widgets/reusable_card.dart';
 
@@ -14,6 +16,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
+  int weight = 50;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +108,16 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(color: kContainerColor),
+                  child: ReusableCard(
+                    color: kContainerColor,
+                    cardChild: weightColumn(),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(color: kContainerColor),
+                  child: ReusableCard(
+                    color: kContainerColor,
+                    cardChild: ageColumn(),
+                  ),
                 ),
               ],
             ),
@@ -120,6 +130,73 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+    );
+  }
+
+  Column weightColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('WEIGHT', style: kLabelTextStyle),
+        Text(weight.toString(), style: kNumberTextStyle),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleIconButton(
+              icon: FontAwesomeIcons.minus,
+              onPress: () {
+                setState(() {
+                  if (weight > 0) --weight;
+                });
+                print('+');
+              },
+            ),
+            SizedBox(width: 8.0),
+            CircleIconButton(
+              icon: FontAwesomeIcons.plus,
+              onPress: () {
+                setState(() {
+                  if (weight < 200) ++weight;
+                });
+              },
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Column ageColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('AGE', style: kLabelTextStyle),
+        Text(age.toString(), style: kNumberTextStyle),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleIconButton(
+              icon: FontAwesomeIcons.minus,
+              onPress: () {
+                setState(() {
+                  if (age > 0) --age;
+                });
+                print('+');
+              },
+            ),
+            SizedBox(width: 8.0),
+            CircleIconButton(
+              icon: FontAwesomeIcons.plus,
+              onPress: () {
+                setState(() {
+                  if (age < 200) ++age;
+                });
+                print('-');
+              },
+            ),
+          ],
+        )
+      ],
     );
   }
 }
