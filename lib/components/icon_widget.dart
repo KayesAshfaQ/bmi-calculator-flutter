@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class IconWidget extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final String label;
 
-  IconWidget({@required this.icon, @required this.label});
+  IconWidget({@required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {

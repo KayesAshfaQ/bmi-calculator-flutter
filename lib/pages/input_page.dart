@@ -1,10 +1,13 @@
+import 'package:bmi_calculator/components/bottom_button_widget.dart';
+import 'package:bmi_calculator/components/circle_icon_button.dart';
+import 'package:bmi_calculator/components/icon_widget.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'widgets/circle_icon_button.dart';
-import 'widgets/icon_widget.dart';
-import 'widgets/reusable_card.dart';
+import '../constants.dart';
+import 'result_page.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -14,7 +17,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender selectedGender;
+  Gender? selectedGender;
   int height = 180;
   int weight = 50;
   int age = 20;
@@ -122,11 +125,16 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 8.0),
-            height: 60.0,
-            width: double.infinity,
-            color: Color(0xFFFF0067),
+          BottomButtonWidget(
+            label: 'CALCULATE',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(),
+                ),
+              );
+            },
           )
         ],
       ),

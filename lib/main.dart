@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import 'pages/input_page.dart';
 
 const primaryColor = Color(0xFF090C22);
 
@@ -13,6 +13,10 @@ class BMICalculator extends StatelessWidget {
         primaryColor: primaryColor,
         appBarTheme: AppBarTheme(
           backgroundColor: primaryColor,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+                fontSize: 20.0
+          )
         ),
         scaffoldBackgroundColor: primaryColor,
       ),
