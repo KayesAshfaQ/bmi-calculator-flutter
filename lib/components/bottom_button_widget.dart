@@ -5,7 +5,7 @@ class BottomButtonWidget extends StatelessWidget {
   final String label;
   final Function() onTap;
 
-  BottomButtonWidget({required this.label, required this.onTap});
+  const BottomButtonWidget({super.key, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
