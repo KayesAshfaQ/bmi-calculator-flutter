@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bmi_calculator">
+    package="com.coder71.bmi_calculator">
    <application
         android:label="BMI Calculator"
         android:name="${applicationName}"
