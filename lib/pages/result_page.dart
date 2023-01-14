@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class ResultPage extends StatelessWidget {
   final String bmiResult, resultText, interpolation;
 
-  ResultPage({
+  const ResultPage({
+    super.key,
     required this.bmiResult,
     required this.resultText,
     required this.interpolation,
@@ -18,7 +19,7 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Calculator'),
+        title: const Text('BMI Calculator'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,8 +28,8 @@ class ResultPage extends StatelessWidget {
           Expanded(
             child: Container(
               alignment: Alignment.bottomLeft,
-              padding: EdgeInsets.all(12.0),
-              child: Text(
+              padding: const EdgeInsets.all(12.0),
+              child: const Text(
                 'Your Result',
                 style: kResultTextStyle,
               ),
@@ -43,7 +44,7 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Text(
                     resultText,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.green,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold),
@@ -53,7 +54,7 @@ class ResultPage extends StatelessWidget {
                     style: kNumberTextStyle,
                   ),
                   Column(
-                    children: [
+                    children: const [
                       Text(
                         'Normal BMI range',
                         style:

@@ -3,7 +3,6 @@ import 'package:bmi_calculator/components/bottom_button_widget.dart';
 import 'package:bmi_calculator/components/circle_icon_button.dart';
 import 'package:bmi_calculator/components/icon_widget.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,6 +12,8 @@ import 'result_page.dart';
 enum Gender { MALE, FEMALE }
 
 class InputPage extends StatefulWidget {
+  const InputPage({super.key});
+
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -27,7 +28,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Calculator'),
+        title: const Text('BMI Calculator'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,28 +71,28 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('HEIGHT', style: kLabelTextStyle),
+                  const Text('HEIGHT', style: kLabelTextStyle),
                   Row(
                     textBaseline: TextBaseline.alphabetic,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
                       Text(height.toString(), style: kNumberTextStyle),
-                      Text('cm', style: kLabelTextStyle)
+                      const Text('cm', style: kLabelTextStyle)
                     ],
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       trackHeight: 2.0,
                       activeTrackColor: Colors.white,
-                      inactiveTrackColor: Color(0xFF8D8E98),
+                      inactiveTrackColor: const Color(0xFF8D8E98),
                       thumbColor: kBottomContainerColor,
-                      overlayColor: Color(0x29FF0067),
+                      overlayColor: const Color(0x29FF0067),
                       thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                          const RoundSliderThumbShape(enabledThumbRadius: 12.0),
                       overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 24.0),
-                      trackShape: RectangularSliderTrackShape(),
+                          const RoundSliderOverlayShape(overlayRadius: 24.0),
+                      trackShape: const RectangularSliderTrackShape(),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -153,7 +154,7 @@ class _InputPageState extends State<InputPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('WEIGHT', style: kLabelTextStyle),
+        const Text('WEIGHT', style: kLabelTextStyle),
         Text(weight.toString(), style: kNumberTextStyle),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -167,7 +168,7 @@ class _InputPageState extends State<InputPage> {
                 print('+');
               },
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: () {
@@ -186,7 +187,7 @@ class _InputPageState extends State<InputPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('AGE', style: kLabelTextStyle),
+        const Text('AGE', style: kLabelTextStyle),
         Text(age.toString(), style: kNumberTextStyle),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -200,7 +201,7 @@ class _InputPageState extends State<InputPage> {
                 print('+');
               },
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: () {
