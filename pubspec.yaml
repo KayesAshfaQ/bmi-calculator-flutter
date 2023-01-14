@@ -26,9 +26,18 @@ dev_dependencies:
   # splash screen
   flutter_native_splash: ^2.2.16
 
+  # app launcher icons
+#  flutter_launcher_icons: ^0.11.0
+
 flutter_native_splash:
   color: "#090C22"
   image: "assets/bmi.png"
+
+#flutter_icons:
+#  android: true
+#  ios: true
+#  image_path: "assets/logo.png"
+#  #remove_alpha_channel: true
 
 flutter:
 
