@@ -6,6 +6,7 @@ import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../components/nav_drawer_widget.dart';
 import '../constants.dart';
 import 'result_page.dart';
 
@@ -19,7 +20,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender? selectedGender;
+  Gender selectedGender = Gender.MALE;
   int height = 180;
   int weight = 50;
   int age = 20;
@@ -30,6 +31,7 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: const Text('BMI Calculator'),
       ),
+      endDrawer: const DrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -38,7 +40,8 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardChild: IconWidget(icon: Icons.male, label: 'MALE'),
+                    cardChild:
+                        const IconWidget(icon: Icons.male, label: 'MALE'),
                     color: selectedGender == Gender.MALE
                         ? kActiveCardColor
                         : kInActiveCardColor,
@@ -54,7 +57,8 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.FEMALE
                         ? kActiveCardColor
                         : kInActiveCardColor,
-                    cardChild: IconWidget(icon: Icons.female, label: 'FEMALE'),
+                    cardChild:
+                        const IconWidget(icon: Icons.female, label: 'FEMALE'),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.FEMALE;
@@ -217,3 +221,4 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+

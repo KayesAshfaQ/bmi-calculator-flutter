@@ -20,6 +20,14 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('BMI Calculator'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

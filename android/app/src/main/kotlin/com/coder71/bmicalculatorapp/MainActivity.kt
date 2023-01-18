@@ -1,4 +1,4 @@
-package com.coder71.bmi_calculator
+package com.coder71.bmicalculatorapp
 
 import io.flutter.embedding.android.FlutterActivity
 
