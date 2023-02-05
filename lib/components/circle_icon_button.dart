@@ -9,12 +9,12 @@ class CircleIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(height: 50.0, width: 50.0),
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF4C4F5E),
+      constraints: const BoxConstraints.tightFor(height: 50.0, width: 50.0),
       elevation: 6.0,
-      child: Icon(icon),
       onPressed: onPress,
+      child: Icon(icon),
     );
   }
 }

@@ -17,6 +17,9 @@ dependencies:
   # font-awesome icons
   font_awesome_flutter: ^9.1.0
 
+  # in app web View
+  webview_flutter: ^4.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -35,6 +38,12 @@ flutter_native_splash:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-Regular.ttf
+          weight: 400
 
   assets:
     - assets/bmi.png

@@ -1,7 +1,10 @@
+import 'package:bmi_calculator/pages/about_page.dart';
+import 'package:bmi_calculator/pages/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants.dart';
+import 'drawer_list_item_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -14,43 +17,58 @@ class DrawerWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return Drawer(
-      backgroundColor: const Color.fromRGBO(17, 19, 40, 0.7),
-      width: width * 0.5,
+      backgroundColor: const Color.fromRGBO(17, 19, 40, 0.9),
+      width: width * 0.55,
       child: ListView(
         children: <Widget>[
           Container(
             height: 150,
-            color: kBottomContainerColor,
+            color: kActiveCardColor,
             child: Center(
               child: Image.asset(
                 'assets/bmi.png',
-                height: width * 0.3,
-                width: width * 0.3,
+                height: width * 0.25,
+                width: width * 0.25,
               ),
             ),
           ),
-          ListTile(
-            leading: const Icon(
-              FontAwesomeIcons.infoCircle,
-              color: Colors.white,
-            ),
-            title: const Text('About'),
-            onTap: () {
-              // Handle tap
-            },
+          const DrawerListItemWidget(
+            icon: Icons.settings,
+            label: 'Settings',
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.settings,
-              color: Colors.white,
-            ),
-            title: Text('Item 2'),
-            onTap: () {
-              // Handle tap
-            },
+          DrawerListItemWidget(
+            icon: FontAwesomeIcons.infoCircle,
+            label: 'About us',
+            onTap: push(context, const AboutPage()),
+          ),
+           DrawerListItemWidget(
+            icon: FontAwesomeIcons.book,
+            label: 'Terms & Conditions',
+            onTap: push(context, const TermsConditions()),
+          ),
+          const DrawerListItemWidget(
+            icon: Icons.bug_report,
+            label: 'Report a bug',
+          ),
+          const DrawerListItemWidget(
+            icon: FontAwesomeIcons.share,
+            label: 'Share app',
+          ),
+          const DrawerListItemWidget(
+            icon: Icons.rate_review_rounded,
+            label: 'Give review',
           ),
         ],
       ),
     );
+  }
+
+  Function() push(context, widget) {
+    return () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widget,
+          ),
+        );
   }
 }
