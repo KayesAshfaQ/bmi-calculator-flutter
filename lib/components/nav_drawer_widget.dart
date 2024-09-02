@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -45,9 +46,10 @@ class DrawerWidget extends StatelessWidget {
               thickness: 0.5,
             ),
           ),
-          const DrawerListItemWidget(
+          DrawerListItemWidget(
             icon: Icons.settings,
             label: 'Settings',
+            onTap: push(context, const SettingsPage()),
           ),
           const DrawerListItemWidget(
             icon: FontAwesomeIcons.share,
