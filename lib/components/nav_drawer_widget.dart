@@ -77,11 +77,18 @@ class DrawerWidget extends StatelessWidget {
   }
 
   Function() push(context, widget) {
-    return () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => widget,
-          ),
-        );
+    // return a function
+    return () {
+      // close the drawer
+      Navigator.pop(context);
+
+      // navigate to the widget
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => widget,
+        ),
+      );
+    };
   }
 }
