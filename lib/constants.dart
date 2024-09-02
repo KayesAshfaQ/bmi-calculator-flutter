@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+const kPrimaryColor = Color(0xFF090C22);
 const kContainerColor = Color(0xFF1D1F33);
 const kBottomContainerColor = Color(0xFFFF0067);
 const kActiveCardColor = Color(0xFF1D1E33);

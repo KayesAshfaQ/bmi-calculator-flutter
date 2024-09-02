@@ -40,11 +40,8 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardChild:
-                        const IconWidget(icon: Icons.male, label: 'MALE'),
-                    color: selectedGender == Gender.MALE
-                        ? kActiveCardColor
-                        : kInActiveCardColor,
+                    cardChild: const IconWidget(icon: Icons.male, label: 'MALE'),
+                    color: selectedGender == Gender.MALE ? kActiveCardColor : kInActiveCardColor,
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.MALE;
@@ -54,11 +51,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.FEMALE
-                        ? kActiveCardColor
-                        : kInActiveCardColor,
-                    cardChild:
-                        const IconWidget(icon: Icons.female, label: 'FEMALE'),
+                    color: selectedGender == Gender.FEMALE ? kActiveCardColor : kInActiveCardColor,
+                    cardChild: const IconWidget(icon: Icons.female, label: 'FEMALE'),
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.FEMALE;
@@ -80,10 +74,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
-                    children: [
-                      Text(height.toString(), style: kNumberTextStyle),
-                      const Text('cm', style: kLabelTextStyle)
-                    ],
+                    children: [Text(height.toString(), style: kNumberTextStyle), const Text('cm', style: kLabelTextStyle)],
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
@@ -92,10 +83,8 @@ class _InputPageState extends State<InputPage> {
                       inactiveTrackColor: const Color(0xFF8D8E98),
                       thumbColor: kBottomContainerColor,
                       overlayColor: const Color(0x29FF0067),
-                      thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                      overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 24.0),
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
                       trackShape: const RectangularSliderTrackShape(),
                     ),
                     child: Slider(
@@ -133,9 +122,9 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButtonWidget(
             label: 'CALCULATE',
+            suffixIcon: FontAwesomeIcons.arrowRight,
             onTap: () {
-              CalculatorBrain calc =
-                  CalculatorBrain(height: height, weight: weight);
+              CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
 
               Navigator.push(
                 context,
@@ -154,7 +143,7 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  Column weightColumn() {
+  Widget weightColumn() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -187,7 +176,7 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  Column ageColumn() {
+  Widget ageColumn() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
