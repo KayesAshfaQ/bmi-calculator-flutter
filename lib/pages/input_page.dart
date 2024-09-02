@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,10 +5,10 @@ import '../controllers/calculator_controller.dart';
 import '../components/bottom_button_widget.dart';
 import '../components/circle_icon_button.dart';
 import '../components/icon_widget.dart';
-import '../components/nav_drawer_widget.dart';
 import '../components/reusable_card.dart';
 import '../constants.dart';
 import 'result_page.dart';
+import 'settings_page.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -31,8 +30,16 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('BMI Calculator'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+            },
+          )
+        ],
       ),
-      endDrawer: const DrawerWidget(),
+      // endDrawer: const DrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -126,9 +133,6 @@ class _InputPageState extends State<InputPage> {
             suffixIcon: FontAwesomeIcons.arrowRight,
             onTap: () {
               CalculatorController calc = CalculatorController(height: height, weight: weight);
-
-              var i =SettingsController().getImperialUnits();
-
 
               Navigator.push(
                 context,
