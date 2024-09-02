@@ -10,7 +10,7 @@ const kLightGreyColor = Color(0xFF8D8E98);
 
 const kLabelTextStyle = TextStyle(
   fontSize: 18,
-  color: Color(0xFF8D8E98),
+  color: kLightGreyColor,
 );
 
 const kNumberTextStyle = TextStyle(

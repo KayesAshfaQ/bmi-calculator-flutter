@@ -1,7 +1,8 @@
+import 'package:bmi_calculator/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../calculator_brain.dart';
+import '../controllers/calculator_controller.dart';
 import '../components/bottom_button_widget.dart';
 import '../components/circle_icon_button.dart';
 import '../components/icon_widget.dart';
@@ -124,7 +125,10 @@ class _InputPageState extends State<InputPage> {
             label: 'CALCULATE',
             suffixIcon: FontAwesomeIcons.arrowRight,
             onTap: () {
-              CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
+              CalculatorController calc = CalculatorController(height: height, weight: weight);
+
+              var i =SettingsController().getImperialUnits();
+
 
               Navigator.push(
                 context,
