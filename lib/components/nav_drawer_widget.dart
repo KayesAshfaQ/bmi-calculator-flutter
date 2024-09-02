@@ -17,13 +17,18 @@ class DrawerWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return Drawer(
-      backgroundColor: const Color.fromRGBO(17, 19, 40, 0.9),
+      backgroundColor: kBottomContainerColor.withOpacity(0.9),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          bottomLeft: Radius.circular(10),
+        ),
+      ),
       width: width * 0.55,
       child: ListView(
         children: <Widget>[
-          Container(
-            height: 150,
-            color: kActiveCardColor,
+          SizedBox(
+            height: height * 0.15,
             child: Center(
               child: Image.asset(
                 'assets/bmi.png',
@@ -32,23 +37,17 @@ class DrawerWidget extends StatelessWidget {
               ),
             ),
           ),
+          // divider
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Divider(
+              color: Colors.white,
+              thickness: 0.5,
+            ),
+          ),
           const DrawerListItemWidget(
             icon: Icons.settings,
             label: 'Settings',
-          ),
-          DrawerListItemWidget(
-            icon: FontAwesomeIcons.infoCircle,
-            label: 'About us',
-            onTap: push(context, const AboutPage()),
-          ),
-           DrawerListItemWidget(
-            icon: FontAwesomeIcons.book,
-            label: 'Terms & Conditions',
-            onTap: push(context, const TermsConditions()),
-          ),
-          const DrawerListItemWidget(
-            icon: Icons.bug_report,
-            label: 'Report a bug',
           ),
           const DrawerListItemWidget(
             icon: FontAwesomeIcons.share,
@@ -57,6 +56,20 @@ class DrawerWidget extends StatelessWidget {
           const DrawerListItemWidget(
             icon: Icons.rate_review_rounded,
             label: 'Give review',
+          ),
+          const DrawerListItemWidget(
+            icon: Icons.bug_report,
+            label: 'Report a bug',
+          ),
+          DrawerListItemWidget(
+            icon: FontAwesomeIcons.book,
+            label: 'Terms & Conditions',
+            onTap: push(context, const TermsConditions()),
+          ),
+          DrawerListItemWidget(
+            icon: FontAwesomeIcons.infoCircle,
+            label: 'About us',
+            onTap: push(context, const AboutPage()),
           ),
         ],
       ),
