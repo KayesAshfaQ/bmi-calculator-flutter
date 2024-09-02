@@ -1,9 +1,8 @@
-import 'dart:ui';
-
-import 'package:bmi_calculator/components/bottom_button_widget.dart';
-import 'package:bmi_calculator/components/reusable_card.dart';
-import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../components/bottom_button_widget.dart';
+import '../components/reusable_card.dart';
+import '../constants.dart';
 
 class ResultPage extends StatelessWidget {
   final String bmiResult, resultText, interpolation;
@@ -52,21 +51,17 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Text(
                     resultText,
-                    style: const TextStyle(
-                        color: Colors.green,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Colors.green, fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     bmiResult,
                     style: kNumberTextStyle,
                   ),
-                  Column(
-                    children: const [
+                  const Column(
+                    children: [
                       Text(
                         'Normal BMI range',
-                        style:
-                            TextStyle(fontSize: 24.0, color: kLightGreyColor),
+                        style: TextStyle(fontSize: 24.0, color: kLightGreyColor),
                       ),
                       Text(
                         '18.5 - 25 kg/m\u{00B2}',
@@ -78,7 +73,7 @@ class ResultPage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
                       interpolation,
-                      style: kResutlDetailsTextStyle,
+                      style: kResultDetailsTextStyle,
                       textAlign: TextAlign.center,
                     ),
                   )

@@ -1,9 +1,9 @@
-import 'package:bmi_calculator/pages/about_page.dart';
-import 'package:bmi_calculator/pages/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants.dart';
+import '../pages/about_page.dart';
+import '../pages/terms_conditions.dart';
 import 'drawer_list_item_widget.dart';
 
 class DrawerWidget extends StatelessWidget {

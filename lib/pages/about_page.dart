@@ -17,10 +17,10 @@ class AboutPage extends StatelessWidget {
           color: kInActiveCardColor,
         ),
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Team',
                 textAlign: TextAlign.justify,

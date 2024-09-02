@@ -1,12 +1,12 @@
-import 'package:bmi_calculator/calculator_brain.dart';
-import 'package:bmi_calculator/components/bottom_button_widget.dart';
-import 'package:bmi_calculator/components/circle_icon_button.dart';
-import 'package:bmi_calculator/components/icon_widget.dart';
-import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../calculator_brain.dart';
+import '../components/bottom_button_widget.dart';
+import '../components/circle_icon_button.dart';
+import '../components/icon_widget.dart';
 import '../components/nav_drawer_widget.dart';
+import '../components/reusable_card.dart';
 import '../constants.dart';
 import 'result_page.dart';
 
@@ -169,7 +169,7 @@ class _InputPageState extends State<InputPage> {
                 setState(() {
                   if (weight > 0) --weight;
                 });
-                print('+');
+                debugPrint('+');
               },
             ),
             const SizedBox(width: 8.0),
@@ -202,7 +202,7 @@ class _InputPageState extends State<InputPage> {
                 setState(() {
                   if (age > 0) --age;
                 });
-                print('+');
+                debugPrint('+');
               },
             ),
             const SizedBox(width: 8.0),
@@ -212,7 +212,7 @@ class _InputPageState extends State<InputPage> {
                 setState(() {
                   if (age < 200) ++age;
                 });
-                print('-');
+                debugPrint('-');
               },
             ),
           ],
