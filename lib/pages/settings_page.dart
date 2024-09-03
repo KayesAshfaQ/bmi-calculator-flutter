@@ -1,13 +1,13 @@
-import 'package:bmi_calculator/components/ripple_view.dart';
-import 'package:bmi_calculator/pages/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../components/ripple_view.dart';
 import '../constants.dart';
 import '../components/reusable_card.dart';
 import '../components/unit_selection_widget.dart';
 import '../controllers/settings_controller.dart';
 import 'about_page.dart';
+import 'terms_conditions.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -38,13 +38,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final settingsController = SettingsController();
-
-    // final imperialUnits = settingsController.getImperialUnits();
-    // final metricUnits = settingsController.getMetricUnits();
-
-    // var selectedImperial = settingsController.selectedImperial;
-    // var selectedMetric = settingsController.selectedMetric;
 
     return Scaffold(
       appBar: AppBar(
