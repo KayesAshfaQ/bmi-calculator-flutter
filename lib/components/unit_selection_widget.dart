@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class UnitSelectionWidget<T> extends StatelessWidget {
+class UnitSelectionWidget<T> extends StatefulWidget {
   final String label;
   final IconData icon;
   final List<T> items;
   final T selectedItem;
-  final double height = 32, width = 40.0;
+  final void Function(T)? onTap;
 
   const UnitSelectionWidget({
     super.key,
@@ -15,19 +15,27 @@ class UnitSelectionWidget<T> extends StatelessWidget {
     required this.icon,
     required this.items,
     required this.selectedItem,
+    required this.onTap,
   });
+
+  @override
+  State<UnitSelectionWidget<T>> createState() => _UnitSelectionWidgetState<T>();
+}
+
+class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
+  final double height = 32, width = 40.0;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
         Icon(
-          icon,
+          widget.icon,
           size: 16,
         ),
         const SizedBox(width: 8),
         Text(
-          label,
+          widget.label,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -40,28 +48,32 @@ class UnitSelectionWidget<T> extends StatelessWidget {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: items.length,
+            itemCount: widget.items.length,
             itemBuilder: (context, index) {
-              bool isSelected = selectedItem == items[index];
-
-              return Container(
-                margin: const EdgeInsets.all(4),
-                constraints: BoxConstraints(
-                  minWidth: width,
-                  minHeight: height,
-                  maxWidth: width,
-                  maxHeight: height,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: isSelected ? kBottomContainerColor : null,
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: kLightGreyColor,
-                    width: 1.0,
+              bool isSelected = widget.selectedItem == widget.items[index];
+              return InkWell(
+                onTap: () {
+                  widget.onTap?.call(widget.items[index]);
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(4),
+                  constraints: BoxConstraints(
+                    minWidth: width,
+                    minHeight: height,
+                    maxWidth: width,
+                    maxHeight: height,
                   ),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: isSelected ? kBottomContainerColor : null,
+                    borderRadius: BorderRadius.circular(4.0),
+                    border: Border.all(
+                      color: kLightGreyColor,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Text(widget.items[index].toString().split('.').last),
                 ),
-                child: Text(items[index].toString().split('.').last),
               );
               // return Text(imperialUnits[index].toString().split('.').last);
             },

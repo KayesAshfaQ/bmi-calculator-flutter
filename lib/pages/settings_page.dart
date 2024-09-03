@@ -9,18 +9,42 @@ import '../components/unit_selection_widget.dart';
 import '../controllers/settings_controller.dart';
 import 'about_page.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
   @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  late SettingsController settingsController;
+
+  late List<Imperial> imperialUnits;
+  late List<Metric> metricUnits;
+
+  late Imperial selectedImperial;
+  late Metric selectedMetric;
+
+  @override
+  void initState() {
+    settingsController = SettingsController();
+    imperialUnits = settingsController.getImperialUnits();
+    metricUnits = settingsController.getMetricUnits();
+
+    selectedImperial = settingsController.selectedImperial;
+    selectedMetric = settingsController.selectedMetric;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final settingsController = SettingsController();
+    // final settingsController = SettingsController();
 
-    final imperialUnits = settingsController.getImperialUnits();
-    final metricUnits = settingsController.getMetricUnits();
+    // final imperialUnits = settingsController.getImperialUnits();
+    // final metricUnits = settingsController.getMetricUnits();
 
-    var selectedImperial = settingsController.selectedImperial;
-    var selectedMetric = settingsController.selectedMetric;
+    // var selectedImperial = settingsController.selectedImperial;
+    // var selectedMetric = settingsController.selectedMetric;
 
     return Scaffold(
       appBar: AppBar(
@@ -46,6 +70,12 @@ class SettingsPage extends StatelessWidget {
                     icon: FontAwesomeIcons.rulerCombined,
                     items: imperialUnits,
                     selectedItem: selectedImperial,
+                    onTap: (val) {
+                      setState(() {
+                        selectedImperial = val;
+                      });
+                      debugPrint(selectedImperial.toString());
+                    },
                   ),
                   const SizedBox(height: 8.0),
                   UnitSelectionWidget<Metric>(
@@ -53,6 +83,12 @@ class SettingsPage extends StatelessWidget {
                     icon: FontAwesomeIcons.weight,
                     items: metricUnits,
                     selectedItem: selectedMetric,
+                    onTap: (val) {
+                      setState(() {
+                        selectedMetric = val;
+                      });
+                      debugPrint(selectedImperial.toString());
+                    },
                   )
                 ],
               ),
@@ -90,14 +126,20 @@ class SettingsPage extends StatelessWidget {
                     'Terms & Conditions',
                     FontAwesomeIcons.book,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsConditions()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TermsConditions()));
                     },
                   ),
                   settingItem(
                     'About Us',
                     FontAwesomeIcons.infoCircle,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AboutPage()));
                     },
                   ),
                 ],
