@@ -14,15 +14,15 @@ class BMICalculator extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        primaryColor: kPrimaryColor,
+        primaryColor: kColorPrimary,
         appBarTheme: const AppBarTheme(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: kColorPrimary,
           titleTextStyle: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 20.0,
           ),
         ),
-        scaffoldBackgroundColor: kPrimaryColor,
+        scaffoldBackgroundColor: kColorPrimary,
       ),
       home: const InputPage(),
     );

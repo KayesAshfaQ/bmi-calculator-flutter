@@ -35,7 +35,7 @@ class RippleView extends StatelessWidget {
     this.elevation = 0,
     this.isCircular = false,
     this.color = Colors.transparent,
-    this.rippleColor = kPrimaryColor,
+    this.rippleColor = kColorPrimary,
     this.onTap,
   });
 

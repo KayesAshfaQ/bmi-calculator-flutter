@@ -22,8 +22,8 @@ class BottomButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: kBottomContainerColor,
-          foregroundColor: kPrimaryColor,
+          backgroundColor: kColorBottomContainer,
+          foregroundColor: kColorPrimary,
           minimumSize: const Size(double.infinity, 48.0),
           splashFactory: InkRipple.splashFactory,
           shape: RoundedRectangleBorder(

@@ -38,7 +38,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -46,15 +45,15 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Column(
         children: <Widget>[
           ReusableCard(
-            color: kActiveCardColor,
+            color: kColorActiveCard,
             cardChild: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text('Units', style: kLabelTextStyle),
+                  const Text('Units', style: kTextStyleLabel),
                   const Divider(
-                    color: kLightGreyColor,
+                    color: kColorLightGrey,
                     thickness: 0.25,
                   ),
                   const SizedBox(height: 8.0),
@@ -88,15 +87,15 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           ReusableCard(
-            color: kActiveCardColor,
+            color: kColorActiveCard,
             cardChild: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text('Others', style: kLabelTextStyle),
+                  const Text('Others', style: kTextStyleLabel),
                   const Divider(
-                    color: kLightGreyColor,
+                    color: kColorLightGrey,
                     thickness: 0.25,
                   ),
                   const SizedBox(height: 8.0),
@@ -119,20 +118,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     'Terms & Conditions',
                     FontAwesomeIcons.book,
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const TermsConditions()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsConditions()));
                     },
                   ),
                   settingItem(
                     'About Us',
                     FontAwesomeIcons.infoCircle,
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AboutPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage()));
                     },
                   ),
                 ],
@@ -142,7 +135,7 @@ class _SettingsPageState extends State<SettingsPage> {
           const Text(
             'Version 1.0.0',
             style: TextStyle(
-              color: kLightGreyColor,
+              color: kColorLightGrey,
               fontSize: 12.0,
             ),
           ),

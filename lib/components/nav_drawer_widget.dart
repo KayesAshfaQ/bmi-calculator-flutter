@@ -18,7 +18,7 @@ class DrawerWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     return Drawer(
-      backgroundColor: kBottomContainerColor.withOpacity(0.9),
+      backgroundColor: kColorBottomContainer.withOpacity(0.9),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),

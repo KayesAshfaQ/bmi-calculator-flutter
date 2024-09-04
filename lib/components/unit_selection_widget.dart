@@ -65,10 +65,10 @@ class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
                   ),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: isSelected ? kBottomContainerColor : null,
+                    color: isSelected ? kColorBottomContainer : null,
                     borderRadius: BorderRadius.circular(4.0),
                     border: Border.all(
-                      color: kLightGreyColor,
+                      color: kColorLightGrey,
                       width: 1.0,
                     ),
                   ),

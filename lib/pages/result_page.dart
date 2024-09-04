@@ -44,7 +44,7 @@ class ResultPage extends StatelessWidget {
 
   Widget resultCard() {
     return ReusableCard(
-      color: kActiveCardColor,
+      color: kColorActiveCard,
       cardChild: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -58,13 +58,13 @@ class ResultPage extends StatelessWidget {
           ),
           Text(
             bmiResult,
-            style: kNumberTextStyle,
+            style: kTextStyleNumber,
           ),
           const Column(
             children: [
               Text(
                 'Normal BMI range',
-                style: TextStyle(fontSize: 24.0, color: kLightGreyColor),
+                style: TextStyle(fontSize: 24.0, color: kColorLightGrey),
               ),
               Text(
                 '18.5 - 25 kg/m\u{00B2}',
@@ -76,7 +76,7 @@ class ResultPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               interpolation,
-              style: kResultDetailsTextStyle,
+              style: kTextStyleResultDetails,
               textAlign: TextAlign.center,
             ),
           )

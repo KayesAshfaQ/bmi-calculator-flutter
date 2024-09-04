@@ -49,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     cardChild: const IconWidget(icon: Icons.male, label: 'MALE'),
-                    color: selectedGender == Gender.MALE ? kActiveCardColor : kInActiveCardColor,
+                    color: selectedGender == Gender.MALE ? kColorActiveCard : kColorInActiveCard,
                     onPress: () {
                       setState(() {
                         selectedGender = Gender.MALE;
@@ -59,7 +59,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.FEMALE ? kActiveCardColor : kInActiveCardColor,
+                    color: selectedGender == Gender.FEMALE ? kColorActiveCard : kColorInActiveCard,
                     cardChild: const IconWidget(icon: Icons.female, label: 'FEMALE'),
                     onPress: () {
                       setState(() {
@@ -77,19 +77,19 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('HEIGHT', style: kLabelTextStyle),
+                  const Text('HEIGHT', style: kTextStyleLabel),
                   Row(
                     textBaseline: TextBaseline.alphabetic,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
-                    children: [Text(height.toString(), style: kNumberTextStyle), const Text('cm', style: kLabelTextStyle)],
+                    children: [Text(height.toString(), style: kTextStyleNumber), const Text('cm', style: kTextStyleLabel)],
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       trackHeight: 2.0,
                       activeTrackColor: Colors.white,
                       inactiveTrackColor: const Color(0xFF8D8E98),
-                      thumbColor: kBottomContainerColor,
+                      thumbColor: kColorBottomContainer,
                       overlayColor: const Color(0x29FF0067),
                       thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
                       overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
@@ -155,8 +155,8 @@ class _InputPageState extends State<InputPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('WEIGHT', style: kLabelTextStyle),
-        Text(weight.toString(), style: kNumberTextStyle),
+        const Text('WEIGHT', style: kTextStyleLabel),
+        Text(weight.toString(), style: kTextStyleNumber),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -188,8 +188,8 @@ class _InputPageState extends State<InputPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('AGE', style: kLabelTextStyle),
-        Text(age.toString(), style: kNumberTextStyle),
+        const Text('AGE', style: kTextStyleLabel),
+        Text(age.toString(), style: kTextStyleNumber),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

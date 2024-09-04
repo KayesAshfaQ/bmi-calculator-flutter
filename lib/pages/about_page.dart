@@ -14,7 +14,7 @@ class AboutPage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: kInActiveCardColor,
+          color: kColorInActiveCard,
         ),
         padding: const EdgeInsets.all(16.0),
         child: const SingleChildScrollView(
@@ -31,7 +31,7 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(height: 4.0),
               Text(
-                kAboutTeam,
+                kStringAboutTeam,
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontFamily: 'RobotoMono',
@@ -49,7 +49,7 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(height: 4.0),
               Text(
-                kMissionText,
+                kStringMissionText,
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontFamily: 'RobotoMono',
