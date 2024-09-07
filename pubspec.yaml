@@ -23,6 +23,9 @@ dependencies:
   # cache local data
   shared_preferences: ^2.3.2
 
+  # shows toast
+  fluttertoast: ^8.2.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

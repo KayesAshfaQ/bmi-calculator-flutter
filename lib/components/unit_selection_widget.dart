@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import 'ripple_view.dart';
 
 class UnitSelectionWidget<T> extends StatefulWidget {
   final String label;
@@ -51,28 +52,32 @@ class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
               bool isSelected = widget.selectedItem == widget.items[index];
-              return InkWell(
-                onTap: () {
-                  widget.onTap?.call(widget.items[index]);
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(4),
-                  constraints: BoxConstraints(
-                    minWidth: width,
-                    minHeight: height,
-                    maxWidth: width,
-                    maxHeight: height,
-                  ),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: isSelected ? kColorBottomContainer : null,
-                    borderRadius: BorderRadius.circular(4.0),
-                    border: Border.all(
-                      color: kColorLightGrey,
-                      width: 1.0,
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                child: RippleView(
+                  padding: 0,
+                  rippleColor: kColorBottomContainer,
+                  onTap: () {
+                    widget.onTap?.call(widget.items[index]);
+                  },
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minWidth: width,
+                      minHeight: height,
+                      maxWidth: width,
+                      maxHeight: height,
                     ),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: isSelected ? kColorBottomContainer : null,
+                      borderRadius: BorderRadius.circular(4.0),
+                      border: Border.all(
+                        color: kColorLightGrey,
+                        width: 1.0,
+                      ),
+                    ),
+                    child: Text(widget.items[index].toString().split('.').last),
                   ),
-                  child: Text(widget.items[index].toString().split('.').last),
                 ),
               );
               // return Text(imperialUnits[index].toString().split('.').last);

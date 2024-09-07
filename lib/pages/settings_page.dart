@@ -19,20 +19,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late SettingsController settingsController;
 
-  late List<Imperial> imperialUnits;
-  late List<Metric> metricUnits;
-
-  late Imperial selectedImperial;
-  late Metric selectedMetric;
-
   @override
   void initState() {
     settingsController = SettingsController();
-    imperialUnits = settingsController.getImperialUnits();
-    metricUnits = settingsController.getMetricUnits();
-
-    selectedImperial = settingsController.selectedImperial;
-    selectedMetric = settingsController.selectedMetric;
     super.initState();
   }
 
@@ -60,26 +49,28 @@ class _SettingsPageState extends State<SettingsPage> {
                   UnitSelectionWidget<Imperial>(
                     label: 'Imperial',
                     icon: FontAwesomeIcons.rulerCombined,
-                    items: imperialUnits,
-                    selectedItem: selectedImperial,
+                    items: settingsController.getImperialUnits(),
+                    selectedItem: settingsController.selectedImperial,
                     onTap: (val) {
                       setState(() {
-                        selectedImperial = val;
+                        settingsController.selectedImperial = val;
                       });
-                      debugPrint(selectedImperial.toString());
+                      settingsController.showToast('Unit changed to ${settingsController.getImperial()}');
+                      debugPrint(settingsController.selectedImperial.toString());
                     },
                   ),
                   const SizedBox(height: 8.0),
                   UnitSelectionWidget<Metric>(
                     label: 'Metric',
-                    icon: FontAwesomeIcons.weight,
-                    items: metricUnits,
-                    selectedItem: selectedMetric,
+                    icon: FontAwesomeIcons.weightScale,
+                    items: settingsController.getMetricUnits(),
+                    selectedItem: settingsController.selectedMetric,
                     onTap: (val) {
                       setState(() {
-                        selectedMetric = val;
+                        settingsController.selectedMetric = val;
                       });
-                      debugPrint(selectedImperial.toString());
+                      settingsController.showToast('Unit changed to ${settingsController.getMetric()}');
+                      debugPrint(settingsController.selectedMetric.toString());
                     },
                   )
                 ],
@@ -118,14 +109,24 @@ class _SettingsPageState extends State<SettingsPage> {
                     'Terms & Conditions',
                     FontAwesomeIcons.book,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsConditions()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TermsConditions(),
+                        ),
+                      );
                     },
                   ),
                   settingItem(
                     'About Us',
-                    FontAwesomeIcons.infoCircle,
+                    FontAwesomeIcons.circleInfo,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutPage(),
+                        ),
+                      );
                     },
                   ),
                 ],

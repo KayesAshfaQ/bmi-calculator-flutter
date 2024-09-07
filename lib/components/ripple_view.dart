@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
+import '../constants.dart';
 
 class RippleView extends StatelessWidget {
   /// `RippleView` is a stateless widget that provides a ripple effect on tap.
@@ -49,6 +49,7 @@ class RippleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widget = Material(
+
       elevation: elevation,
       color: color,
       borderRadius: BorderRadius.circular(4),
