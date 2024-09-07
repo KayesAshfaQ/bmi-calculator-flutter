@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/kayes/src/flutter"
+export "FLUTTER_ROOT=/home/kayes/.asdf/installs/flutter/3.24.2-stable"
 export "FLUTTER_APPLICATION_PATH=/home/kayes/Codes/flutterProjects/bmi-calculator-flutter"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"

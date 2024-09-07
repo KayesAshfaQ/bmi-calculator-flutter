@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'pages/input_page.dart';
+import 'utils/shared_pref_util.dart';
 
-void main() {
+void main() async {
+  // ensure binding is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // load shared preferences
+  await Preference.load();
+
   return runApp(const BMICalculator());
 }
 

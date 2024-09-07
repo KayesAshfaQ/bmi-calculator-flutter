@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -7,6 +8,7 @@ import '../components/circle_icon_button.dart';
 import '../components/icon_widget.dart';
 import '../components/reusable_card.dart';
 import '../constants.dart';
+import '../utils/shared_pref_util.dart';
 import 'result_page.dart';
 import 'settings_page.dart';
 
@@ -20,10 +22,31 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  late Imperial selectedImperial;
+  late Metric selectedMetric;
   Gender selectedGender = Gender.MALE;
   int height = 180;
   int weight = 50;
   int age = 20;
+
+  @override
+  void initState() {
+    super.initState();
+    // post frame callback
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchCachedData();
+    });
+  }
+
+  void fetchCachedData() {
+    // get imperial and metric values from shared preferences
+    selectedImperial = Imperial.values.firstWhere((element) => element.toString() == Preference.getString(kKeyImperialValue), orElse: () => Imperial.ft);
+    selectedMetric = Metric.values.firstWhere((element) => element.toString() == Preference.getString(kKeyMetricValue), orElse: () => Metric.kg);
+
+    // print log
+    debugPrint('Imperial: $selectedImperial');
+    debugPrint('Metric: $selectedMetric');
+  }
 
   @override
   Widget build(BuildContext context) {

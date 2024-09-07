@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/utils/shared_pref_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -52,11 +53,19 @@ class _SettingsPageState extends State<SettingsPage> {
                     items: settingsController.getImperialUnits(),
                     selectedItem: settingsController.selectedImperial,
                     onTap: (val) {
+                      // print log
+                      debugPrint('Selected Imperial: $val');
+
+                      // update the selected unit
                       setState(() {
                         settingsController.selectedImperial = val;
                       });
+
+                      // show toast message
                       settingsController.showToast('Unit changed to ${settingsController.getImperial()}');
-                      debugPrint(settingsController.selectedImperial.toString());
+
+                      // store the selected unit in shared preferences
+                      Preference.setString(kKeyImperialValue, settingsController.selectedImperial.toString());
                     },
                   ),
                   const SizedBox(height: 8.0),
@@ -66,11 +75,19 @@ class _SettingsPageState extends State<SettingsPage> {
                     items: settingsController.getMetricUnits(),
                     selectedItem: settingsController.selectedMetric,
                     onTap: (val) {
+                      // print log
+                      debugPrint('Selected Metric: $val');
+
+                      // update the selected unit
                       setState(() {
                         settingsController.selectedMetric = val;
                       });
+
+                      // show toast message
                       settingsController.showToast('Unit changed to ${settingsController.getMetric()}');
-                      debugPrint(settingsController.selectedMetric.toString());
+
+                      // store the selected unit in shared preferences
+                      Preference.setString(kKeyMetricValue, settingsController.selectedMetric.toString());
                     },
                   )
                 ],
