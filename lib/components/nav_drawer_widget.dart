@@ -9,8 +9,8 @@ import 'drawer_list_item_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

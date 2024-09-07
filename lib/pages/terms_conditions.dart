@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class TermsConditions extends StatefulWidget {
-  const TermsConditions({Key? key}) : super(key: key);
+  const TermsConditions({super.key});
 
   @override
   State<TermsConditions> createState() => _TermsConditionsState();
