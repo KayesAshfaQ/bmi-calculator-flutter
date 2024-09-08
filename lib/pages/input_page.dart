@@ -32,10 +32,7 @@ class _InputPageState extends State<InputPage> {
   @override
   void initState() {
     super.initState();
-    // post frame callback
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      fetchCachedData();
-    });
+    fetchCachedData();
   }
 
   void fetchCachedData() {
@@ -57,7 +54,20 @@ class _InputPageState extends State<InputPage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+              // pass data to settings page using arguments
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(
+                    selectedImperial: selectedImperial,
+                    selectedMetric: selectedMetric,
+                    onSettingsChanged: () {
+                      fetchCachedData();
+                    },
+                  ),
+                ),
+              );
             },
           )
         ],

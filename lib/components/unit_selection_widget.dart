@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'ripple_view.dart';
 
-class UnitSelectionWidget<T> extends StatefulWidget {
+class UnitSelectionWidget<T> extends StatelessWidget {
   final String label;
   final IconData icon;
   final List<T> items;
   final T selectedItem;
   final void Function(T)? onTap;
+  final double height = 32, width = 40.0;
 
   const UnitSelectionWidget({
     super.key,
@@ -20,23 +21,16 @@ class UnitSelectionWidget<T> extends StatefulWidget {
   });
 
   @override
-  State<UnitSelectionWidget<T>> createState() => _UnitSelectionWidgetState<T>();
-}
-
-class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
-  final double height = 32, width = 40.0;
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
         Icon(
-          widget.icon,
+          icon,
           size: 16,
         ),
         const SizedBox(width: 8),
         Text(
-          widget.label,
+          label,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -49,16 +43,16 @@ class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.items.length,
+            itemCount: items.length,
             itemBuilder: (context, index) {
-              bool isSelected = widget.selectedItem == widget.items[index];
+              bool isSelected = selectedItem == items[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
                 child: RippleView(
                   padding: 0,
                   rippleColor: kColorBottomContainer,
                   onTap: () {
-                    widget.onTap?.call(widget.items[index]);
+                    onTap?.call(items[index]);
                   },
                   child: Container(
                     constraints: BoxConstraints(
@@ -76,7 +70,7 @@ class _UnitSelectionWidgetState<T> extends State<UnitSelectionWidget<T>> {
                         width: 1.0,
                       ),
                     ),
-                    child: Text(widget.items[index].toString().split('.').last),
+                    child: Text(items[index].toString().split('.').last),
                   ),
                 ),
               );
