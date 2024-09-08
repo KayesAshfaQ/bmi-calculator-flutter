@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bmi_calculator/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,10 +31,52 @@ class _InputPageState extends State<InputPage> {
   int weight = 50;
   int age = 20;
 
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
     fetchCachedData();
+  }
+
+  void _updateUnit(bool isWeight, bool isIncrement) {
+    if (isWeight) {
+      if (isIncrement) {
+        if (selectedMetric == Metric.kg) {
+          setState(() {
+            if (weight < 200) ++weight;
+          });
+        } else {
+          setState(() {
+            if (weight < 440) ++weight;
+          });
+        }
+      } else {
+        setState(() {
+          if (weight > 0) --weight;
+        });
+      }
+    } else {
+      if (isIncrement) {
+        setState(() {
+          if (age < 150) ++age;
+        });
+      } else {
+        setState(() {
+          if (age > 0) --age;
+        });
+      }
+    }
+  }
+
+  void _startUpdatingUnit(bool isWeight, bool isIncrement) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      _updateUnit(isWeight, isIncrement);
+    });
+  }
+
+  void _stopUpdatingWeight(_) {
+    _timer?.cancel();
   }
 
   void fetchCachedData() {
@@ -195,21 +239,16 @@ class _InputPageState extends State<InputPage> {
           children: [
             CircleIconButton(
               icon: FontAwesomeIcons.minus,
-              onPress: () {
-                setState(() {
-                  if (weight > 0) --weight;
-                });
-                debugPrint('+');
-              },
+              onPress: () => _updateUnit(true, false),
+              onLongPress: () => _startUpdatingUnit(true, false),
+              onLongPressEnd: _stopUpdatingWeight,
             ),
             const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
-              onPress: () {
-                setState(() {
-                  if (weight < 200) ++weight;
-                });
-              },
+              onPress: () => _updateUnit(true, true),
+              onLongPress: () => _startUpdatingUnit(true, true),
+              onLongPressEnd: _stopUpdatingWeight,
             ),
           ],
         )
@@ -228,22 +267,16 @@ class _InputPageState extends State<InputPage> {
           children: [
             CircleIconButton(
               icon: FontAwesomeIcons.minus,
-              onPress: () {
-                setState(() {
-                  if (age > 0) --age;
-                });
-                debugPrint('+');
-              },
+              onPress: () => _updateUnit(false, false),
+              onLongPress: () => _startUpdatingUnit(false, false),
+              onLongPressEnd: _stopUpdatingWeight,
             ),
             const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
-              onPress: () {
-                setState(() {
-                  if (age < 200) ++age;
-                });
-                debugPrint('-');
-              },
+              onPress: () => _updateUnit(false, true),
+              onLongPress: () => _startUpdatingUnit(false, true),
+              onLongPressEnd: _stopUpdatingWeight,
             ),
           ],
         )
