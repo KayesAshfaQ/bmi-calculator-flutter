@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bmi_calculator/controllers/settings_controller.dart';
+import 'package:bmi_calculator/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -27,7 +28,7 @@ class _InputPageState extends State<InputPage> {
   late Imperial selectedImperial;
   late Metric selectedMetric;
   Gender selectedGender = Gender.MALE;
-  int height = 180;
+  late int height;
   int weight = 50;
   int age = 20;
 
@@ -36,7 +37,7 @@ class _InputPageState extends State<InputPage> {
   @override
   void initState() {
     super.initState();
-    fetchCachedData();
+    fetchCachedData(false);
   }
 
   void _updateUnit(bool isWeight, bool isIncrement) {
@@ -79,7 +80,7 @@ class _InputPageState extends State<InputPage> {
     _timer?.cancel();
   }
 
-  void fetchCachedData() {
+  void fetchCachedData(bool shouldUpdate) {
     // get imperial and metric values from shared preferences
     selectedImperial = Imperial.values.firstWhere((element) => element.toString() == Preference.getString(kKeyImperialValue), orElse: () => Imperial.ft);
     selectedMetric = Metric.values.firstWhere((element) => element.toString() == Preference.getString(kKeyMetricValue), orElse: () => Metric.kg);
@@ -87,6 +88,14 @@ class _InputPageState extends State<InputPage> {
     // print log
     debugPrint('Imperial: $selectedImperial');
     debugPrint('Metric: $selectedMetric');
+
+    // set height value
+    height = selectedImperial == Imperial.cm ? 170 : 48;
+
+    // update the UI
+    if (shouldUpdate) {
+      setState(() {});
+    }
   }
 
   @override
@@ -107,7 +116,7 @@ class _InputPageState extends State<InputPage> {
                     selectedImperial: selectedImperial,
                     selectedMetric: selectedMetric,
                     onSettingsChanged: () {
-                      fetchCachedData();
+                      fetchCachedData(true);
                     },
                   ),
                 ),
@@ -155,12 +164,27 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('HEIGHT', style: kTextStyleLabel),
-                  Row(
-                    textBaseline: TextBaseline.alphabetic,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    children: [Text(height.toString(), style: kTextStyleNumber), const Text('cm', style: kTextStyleLabel)],
-                  ),
+                  selectedImperial == Imperial.cm
+                      ? Row(
+                          textBaseline: TextBaseline.alphabetic,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text(height.toString(), style: kTextStyleNumber),
+                            Text(selectedImperial.value, style: kTextStyleLabel),
+                          ],
+                        )
+                      : Row(
+                          textBaseline: TextBaseline.alphabetic,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text((height / 12).floor().toString(), style: kTextStyleNumber),
+                            const Text('ft', style: kTextStyleLabel),
+                            Text((height % 12).toString(), style: kTextStyleNumber),
+                            const Text('in', style: kTextStyleLabel),
+                          ],
+                        ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       trackHeight: 2.0,
@@ -172,16 +196,27 @@ class _InputPageState extends State<InputPage> {
                       overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
                       trackShape: const RectangularSliderTrackShape(),
                     ),
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
-                    ),
+                    child: selectedImperial == Imperial.cm
+                        ? Slider(
+                            value: height.toDouble(),
+                            min: 30,
+                            max: 340,
+                            onChanged: (double newValue) {
+                              setState(() {
+                                height = newValue.round();
+                              });
+                            },
+                          )
+                        : Slider(
+                            value: height.toDouble(),
+                            min: 12.0,
+                            max: 120.0,
+                            onChanged: (double newValue) {
+                              setState(() {
+                                height = newValue.round();
+                              });
+                            },
+                          ),
                   )
                 ],
               ),
@@ -233,7 +268,17 @@ class _InputPageState extends State<InputPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('WEIGHT', style: kTextStyleLabel),
-        Text(weight.toString(), style: kTextStyleNumber),
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(text: weight.toString(), style: kTextStyleNumber),
+              TextSpan(
+                text: ' ${selectedMetric.value}',
+                style: kTextStyleLabel.copyWith(fontSize: 10),
+              ),
+            ],
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
