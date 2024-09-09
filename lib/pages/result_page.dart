@@ -50,8 +50,12 @@ class ResultPage extends StatelessWidget {
         children: [
           Text(
             resultText,
-            style: const TextStyle(
-              color: Colors.green,
+            style: TextStyle(
+              color: resultText == 'NORMAL'
+                  ? Colors.green
+                  : resultText == 'UNDERWEIGHT' //UNDERWEIGHT
+                      ? Colors.yellow
+                      : Colors.red,
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
