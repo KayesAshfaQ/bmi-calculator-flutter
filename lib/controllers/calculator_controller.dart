@@ -1,13 +1,34 @@
 import 'dart:math';
 
+import 'settings_controller.dart';
+
 class CalculatorController {
   final int height;
   final int weight;
+  final Imperial imperialUnit;
+  final Metric metricUnit;
   double _bmi = 0;
 
-  CalculatorController({required this.height, required this.weight});
+  CalculatorController({
+    required this.height,
+    required this.weight,
+    required this.imperialUnit,
+    required this.metricUnit,
+  });
 
   String calculateBMI() {
+    int height = this.height, weight = this.weight;
+
+    // if imperial unit is ft selected convert it to cm
+    if (imperialUnit == Imperial.ft) {
+      height = (this.height * 2.54).round();
+    }
+
+    // if metric unit is lb selected convert it to kg
+    if (metricUnit == Metric.lbs) {
+      weight = (this.weight * 0.453592).round();
+    }
+
     _bmi = weight / pow(height / 100, 2);
     return _bmi.toStringAsFixed(1);
   }

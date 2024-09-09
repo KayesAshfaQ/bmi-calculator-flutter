@@ -245,15 +245,20 @@ class _InputPageState extends State<InputPage> {
             label: 'CALCULATE',
             suffixIcon: FontAwesomeIcons.arrowRight,
             onTap: () {
-              CalculatorController calc = CalculatorController(height: height, weight: weight);
+              CalculatorController calculator = CalculatorController(
+                height: height,
+                weight: weight,
+                imperialUnit: selectedImperial,
+                metricUnit: selectedMetric,
+              );
 
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ResultPage(
-                    bmiResult: calc.calculateBMI(),
-                    resultText: calc.getResult(),
-                    interpolation: calc.getInterpretation(),
+                    bmiResult: calculator.calculateBMI(),
+                    resultText: calculator.getResult(),
+                    interpolation: calculator.getInterpretation(),
                   ),
                 ),
               );
