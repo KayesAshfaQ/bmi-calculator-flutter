@@ -13,7 +13,7 @@ import 'terms_conditions.dart';
 class SettingsPage extends StatefulWidget {
   final Imperial selectedImperial;
   final Metric selectedMetric;
-  final VoidCallback? onSettingsChanged;
+  final void Function(bool)? onSettingsChanged;
 
   const SettingsPage({
     super.key,
@@ -28,6 +28,8 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late SettingsController settingsController;
+
+  bool isUnitChanged = false;
 
   @override
   void initState() {
@@ -52,8 +54,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
         // call the callback function
-        widget.onSettingsChanged?.call();
-        debugPrint('Settings changed: $didPop');
+        widget.onSettingsChanged?.call(isUnitChanged);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -93,6 +94,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
                         // store the selected unit in shared preferences
                         Preference.setString(kKeyImperialValue, settingsController.selectedImperial.toString());
+
+                        // update change flag
+                        isUnitChanged = true;
                       },
                     ),
                     const SizedBox(height: 8.0),
@@ -115,6 +119,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
                         // store the selected unit in shared preferences
                         Preference.setString(kKeyMetricValue, settingsController.selectedMetric.toString());
+
+                        // update change flag
+                        isUnitChanged = true;
                       },
                     )
                   ],

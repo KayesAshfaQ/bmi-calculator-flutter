@@ -37,7 +37,7 @@ class _InputPageState extends State<InputPage> {
   @override
   void initState() {
     super.initState();
-    fetchCachedData(false);
+    _fetchCachedData();
   }
 
   void _updateUnit(bool isWeight, bool isIncrement) {
@@ -76,11 +76,20 @@ class _InputPageState extends State<InputPage> {
     });
   }
 
-  void _stopUpdatingWeight(_) {
+  void _stopUpdatingUnit(_) {
     _timer?.cancel();
   }
 
-  void fetchCachedData(bool shouldUpdate) {
+  void _onSettingsChange(bool shouldUpdate) {
+    if (shouldUpdate) {
+      _fetchCachedData();
+
+      // update state
+      setState(() {});
+    }
+  }
+
+  void _fetchCachedData() {
     // get imperial and metric values from shared preferences
     selectedImperial = Imperial.values.firstWhere((element) => element.toString() == Preference.getString(kKeyImperialValue), orElse: () => Imperial.ft);
     selectedMetric = Metric.values.firstWhere((element) => element.toString() == Preference.getString(kKeyMetricValue), orElse: () => Metric.kg);
@@ -91,11 +100,6 @@ class _InputPageState extends State<InputPage> {
 
     // set height value
     height = selectedImperial == Imperial.cm ? 170 : 48;
-
-    // update the UI
-    if (shouldUpdate) {
-      setState(() {});
-    }
   }
 
   @override
@@ -108,16 +112,13 @@ class _InputPageState extends State<InputPage> {
             icon: const Icon(Icons.settings),
             onPressed: () {
               // pass data to settings page using arguments
-
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => SettingsPage(
                     selectedImperial: selectedImperial,
                     selectedMetric: selectedMetric,
-                    onSettingsChanged: () {
-                      fetchCachedData(true);
-                    },
+                    onSettingsChanged: _onSettingsChange,
                   ),
                 ),
               );
@@ -286,14 +287,14 @@ class _InputPageState extends State<InputPage> {
               icon: FontAwesomeIcons.minus,
               onPress: () => _updateUnit(true, false),
               onLongPress: () => _startUpdatingUnit(true, false),
-              onLongPressEnd: _stopUpdatingWeight,
+              onLongPressEnd: _stopUpdatingUnit,
             ),
             const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: () => _updateUnit(true, true),
               onLongPress: () => _startUpdatingUnit(true, true),
-              onLongPressEnd: _stopUpdatingWeight,
+              onLongPressEnd: _stopUpdatingUnit,
             ),
           ],
         )
@@ -314,14 +315,14 @@ class _InputPageState extends State<InputPage> {
               icon: FontAwesomeIcons.minus,
               onPress: () => _updateUnit(false, false),
               onLongPress: () => _startUpdatingUnit(false, false),
-              onLongPressEnd: _stopUpdatingWeight,
+              onLongPressEnd: _stopUpdatingUnit,
             ),
             const SizedBox(width: 8.0),
             CircleIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: () => _updateUnit(false, true),
               onLongPress: () => _startUpdatingUnit(false, true),
-              onLongPressEnd: _stopUpdatingWeight,
+              onLongPressEnd: _stopUpdatingUnit,
             ),
           ],
         )
