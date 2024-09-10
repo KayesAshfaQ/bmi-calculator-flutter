@@ -11,6 +11,7 @@ import '../components/circle_icon_button.dart';
 import '../components/icon_widget.dart';
 import '../components/reusable_card.dart';
 import '../constants.dart';
+import '../utils/app_helper.dart';
 import '../utils/shared_pref_util.dart';
 import 'result_page.dart';
 import 'settings_page.dart';
@@ -110,16 +111,15 @@ class _InputPageState extends State<InputPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            // pass data to settings page using arguments
             onPressed: () {
-              // pass data to settings page using arguments
-              Navigator.push(
+              AppHelper.pushWithAnimation<void>(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => SettingsPage(
-                    selectedImperial: selectedImperial,
-                    selectedMetric: selectedMetric,
-                    onSettingsChanged: _onSettingsChange,
-                  ),
+                SettingsPage(
+                  selectedImperial: selectedImperial,
+                  selectedMetric: selectedMetric,
+                  onSettingsChanged: _onSettingsChange,
                 ),
               );
             },
@@ -252,15 +252,14 @@ class _InputPageState extends State<InputPage> {
                 metricUnit: selectedMetric,
               );
 
-              Navigator.push(
+              AppHelper.pushWithAnimation(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => ResultPage(
-                    bmiResult: calculator.calculateBMI(),
-                    resultText: calculator.getResult(),
-                    interpolation: calculator.getInterpretation(),
-                  ),
+                ResultPage(
+                  bmiResult: calculator.calculateBMI(),
+                  resultText: calculator.getResult(),
+                  interpolation: calculator.getInterpretation(),
                 ),
+                isTransitionVertical: true,
               );
             },
           )

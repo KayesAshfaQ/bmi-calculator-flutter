@@ -31,7 +31,7 @@ class ResultPage extends StatelessWidget {
           Expanded(
             child: BottomButtonWidget(
               label: 'RE-CALCULATE',
-              prefixIcon: FontAwesomeIcons.redo,
+              prefixIcon: FontAwesomeIcons.arrowRotateRight,
               onTap: () {
                 Navigator.pop(context);
               },
