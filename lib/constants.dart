@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ------------ config ------------
+const kIsCrashlyticsEnabled = true;
+
 // ------------ keys ------------
 const kKeyMetricValue = 'MetricValue';
 const kKeyImperialValue = 'ImperialValue';
