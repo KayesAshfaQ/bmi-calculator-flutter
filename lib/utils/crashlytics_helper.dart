@@ -9,7 +9,7 @@ class CrashlyticsHelper {
 
   static Future<void> initCrashlytics() async {
     // check if crashlytics are enabled
-    if (!kIsCrashlyticsEnabled) return;
+    if (!kConfigIsCrashlyticsEnabled) return;
 
     try {
       final crashlytics = FirebaseCrashlytics.instance;

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 // ------------ config ------------
-const kIsCrashlyticsEnabled = true;
+const kConfigAppName = 'BMI Calculator';
+const kConstAppPackageName = 'dev.solobit.bmi_calculator';
+const kConfigIsCrashlyticsEnabled = true;
 
 // ------------ keys ------------
 const kKeyMetricValue = 'MetricValue';
 const kKeyImperialValue = 'ImperialValue';
+
+const kKeyRequiredMinimumVersion = 'requiredMinVersion';
+const kKeyRecommendedMinimumVersion = 'recommendedMinVersion';
 
 // ------------ colors ------------
 const kColorPrimary = Color(0xFF090C22);

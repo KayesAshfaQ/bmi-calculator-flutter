@@ -1,9 +1,7 @@
 import 'dart:async';
-
-import 'package:bmi_calculator/controllers/settings_controller.dart';
-import 'package:bmi_calculator/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/utils/app_extensions.dart';
 
 import '../controllers/calculator_controller.dart';
 import '../components/bottom_button_widget.dart';
@@ -11,7 +9,11 @@ import '../components/circle_icon_button.dart';
 import '../components/icon_widget.dart';
 import '../components/reusable_card.dart';
 import '../constants.dart';
+import '../controllers/settings_controller.dart';
+import '../utils/app_dialogues.dart';
 import '../utils/app_helper.dart';
+import '../utils/app_package_info_helper.dart';
+import '../utils/remote_config_helper.dart';
 import '../utils/shared_pref_util.dart';
 import 'result_page.dart';
 import 'settings_page.dart';
@@ -38,7 +40,50 @@ class _InputPageState extends State<InputPage> {
   @override
   void initState() {
     super.initState();
+
+    // post frame callback to check for force update
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkForceUpdate();
+    });
+
     _fetchCachedData();
+  }
+
+  // Helper method to compare two semver versions.
+  int _getExtendedVersionNumber(String version) {
+    List versionCells = version.split('.');
+    versionCells = versionCells.map((i) => int.parse(i)).toList();
+    return versionCells[0] * 100000 + versionCells[1] * 1000 + versionCells[2];
+  }
+
+  void _checkForceUpdate() async {
+    // init req
+    final remoteConfig = FirebaseRemoteConfigHelper();
+    final packageInfo = AppPackageInfoHelper();
+    await packageInfo.initialize();
+
+    // get current app version
+    final appVersion = _getExtendedVersionNumber(packageInfo.version);
+
+    // get required minimum version from remote config
+    final minRequiredVersion = _getExtendedVersionNumber(remoteConfig.getRequiredMinimumVersion());
+
+    // get recommended minimum version from remote config
+    final minRecommendedVersion = _getExtendedVersionNumber(remoteConfig.getRecommendedMinimumVersion());
+
+    if (appVersion < minRequiredVersion) {
+      AppDialogues().showUpdateVersionDialog(context, false);
+    } else if (appVersion < minRecommendedVersion) {
+      AppDialogues().showUpdateVersionDialog(context, true);
+    } else {
+      // do nothing
+      debugPrint('No update required');
+    }
+
+    // print log
+    debugPrint('App Version: $appVersion');
+    debugPrint('Min Required Version: ${remoteConfig.getRequiredMinimumVersion()}');
+    debugPrint('Min Recommended Version: ${remoteConfig.getRequiredMinimumVersion()}');
   }
 
   void _updateUnit(bool isWeight, bool isIncrement) {
@@ -190,7 +235,7 @@ class _InputPageState extends State<InputPage> {
                     data: SliderTheme.of(context).copyWith(
                       trackHeight: 2.0,
                       activeTrackColor: Colors.white,
-                      inactiveTrackColor: const Color(0xFF8D8E98),
+                      inactiveTrackColor: kColorLightGrey,
                       thumbColor: kColorBottomContainer,
                       overlayColor: const Color(0x29FF0067),
                       thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),

@@ -5,6 +5,7 @@ import 'constants.dart';
 import 'firebase_options.dart';
 import 'pages/input_page.dart';
 import 'utils/crashlytics_helper.dart';
+import 'utils/remote_config_helper.dart';
 import 'utils/shared_pref_util.dart';
 
 void main() async {
@@ -18,6 +19,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // initialize remote config
+  await FirebaseRemoteConfigHelper.initialize();
 
   // initialize crashlytics
   await CrashlyticsHelper.initCrashlytics();
