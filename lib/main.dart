@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'constants.dart';
+import 'firebase_options.dart';
 import 'pages/input_page.dart';
 import 'utils/shared_pref_util.dart';
 
@@ -9,6 +12,11 @@ void main() async {
 
   // load shared preferences
   await Preference.load();
+
+  // initialize firebase app
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   return runApp(const BMICalculator());
 }

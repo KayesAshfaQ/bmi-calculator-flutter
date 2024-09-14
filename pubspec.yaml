@@ -26,6 +26,9 @@ dependencies:
   # shows toast
   fluttertoast: ^8.2.8
 
+  # firebase
+  firebase_core: ^3.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
