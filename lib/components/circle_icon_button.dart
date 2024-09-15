@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class CircleIconButton extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onPress;
@@ -22,6 +24,7 @@ class CircleIconButton extends StatelessWidget {
       child: RawMaterialButton(
         shape: const CircleBorder(),
         fillColor: const Color(0xFF4C4F5E),
+        highlightColor: kColorBottomContainer.withOpacity(0.25),
         constraints: const BoxConstraints.tightFor(height: 50.0, width: 50.0),
         elevation: 6.0,
         onPressed: onPress,
