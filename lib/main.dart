@@ -36,18 +36,44 @@ class BMICalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: kColorPrimary,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: kColorPrimary,
-          titleTextStyle: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 20.0,
-          ),
-        ),
-        scaffoldBackgroundColor: kColorPrimary,
-      ),
+      theme: _createAppTheme(),
       home: const InputPage(),
+    );
+  }
+
+  ThemeData _createAppTheme() {
+    final base = ThemeData.dark(useMaterial3: true);
+
+    return base.copyWith(
+      colorScheme: base.colorScheme.copyWith(
+        primary: kColorPrimary,
+        secondary: kColorBottomContainer,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: kColorPrimary,
+        titleTextStyle: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 20.0,
+        ),
+      ),
+      scaffoldBackgroundColor: kColorPrimary,
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: kColorBottomContainer,
+        selectionColor: kColorBottomContainer.withOpacity(0.25),
+        selectionHandleColor: kColorBottomContainer,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: TextStyle(
+          color: kColorLightGrey,
+        ),
+        floatingLabelStyle: TextStyle(
+          color: kColorBottomContainer,
+        ),
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kColorBottomContainer),
+        ),
+      ),
     );
   }
 }
