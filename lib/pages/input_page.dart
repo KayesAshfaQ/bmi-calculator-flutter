@@ -179,24 +179,36 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
-                    cardChild: const IconWidget(icon: Icons.male, label: 'MALE'),
-                    color: selectedGender == Gender.MALE ? kColorActiveCard : kColorInActiveCard,
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.MALE;
-                      });
-                    },
-                  ),
+                  child: Builder(builder: (context) {
+                    bool isSelected = Gender.MALE == selectedGender;
+
+                    return ReusableCard(
+                      cardChild: const IconWidget(icon: Icons.male, label: 'MALE'),
+                      color: isSelected ? kColorActiveCard : kColorInActiveCard,
+                      border: isSelected ? Border.all(color: kColorBottomContainer, width: 2.0) : null,
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.MALE;
+                        });
+                      },
+                    );
+                  }),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    color: selectedGender == Gender.FEMALE ? kColorActiveCard : kColorInActiveCard,
-                    cardChild: const IconWidget(icon: Icons.female, label: 'FEMALE'),
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.FEMALE;
-                      });
+                  child: Builder(
+                    builder: (context) {
+                      bool isSelected = Gender.FEMALE == selectedGender;
+
+                      return ReusableCard(
+                        color: isSelected ? kColorActiveCard : kColorInActiveCard,
+                        cardChild: const IconWidget(icon: Icons.female, label: 'FEMALE'),
+                        border: isSelected ? Border.all(color: kColorBottomContainer, width: 2.0) : null,
+                        onPress: () {
+                          setState(() {
+                            selectedGender = Gender.FEMALE;
+                          });
+                        },
+                      );
                     },
                   ),
                 ),
