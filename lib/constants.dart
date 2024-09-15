@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // ------------ config ------------
 const kConfigAppName = 'BMI Calculator';
-const kConstAppPackageName = 'dev.solobit.bmi_calculator';
+const kConfigAppPackageName = 'dev.solobit.bmi_calculator';
 const kConfigIsCrashlyticsEnabled = true;
 
 // ------------ keys ------------

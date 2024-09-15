@@ -29,6 +29,12 @@ dependencies:
   # info about the app
   package_info_plus: ^8.0.2
 
+  # share app
+  share_plus: ^10.0.2
+
+  # rate app
+  in_app_review: ^2.0.9
+
   # launch urls
   url_launcher: ^6.3.0
 

@@ -144,12 +144,12 @@ class _SettingsPageState extends State<SettingsPage> {
                     settingItem(
                       'Share App',
                       FontAwesomeIcons.share,
-                      onTap: () {},
+                      onTap: settingsController.shareApp,
                     ),
                     settingItem(
                       'Give Review',
                       Icons.rate_review_rounded,
-                      onTap: () {},
+                      onTap: settingsController.rateApp,
                     ),
                     settingItem(
                       'Report Bug',

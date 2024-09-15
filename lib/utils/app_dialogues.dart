@@ -57,7 +57,7 @@ class AppDialogues {
               onPressed: () {
                 if (Platform.isAndroid || Platform.isIOS) {
                   // TODO: Add appIDs and enable
-                  final appId = Platform.isAndroid ? kConstAppPackageName : 'not available';
+                  final appId = Platform.isAndroid ? kConfigAppPackageName : 'not available';
 
                   final url = Uri.parse(
                     Platform.isAndroid ? "https://play.google.com/store/apps/details?id=$appId" : "https://apps.apple.com/app/id$appId",

@@ -1,5 +1,8 @@
-import 'package:bmi_calculator/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../constants.dart';
 
 enum Imperial { ft, cm }
 
@@ -44,5 +47,15 @@ class SettingsController {
       msg: message,
       backgroundColor: kColorBottomContainer,
     );
+  }
+
+  void shareApp() {
+    // share app
+    Share.share('Check out this awesome BMI Calculator app! Download it now from https://play.google.com/store/apps/details?id=$kConfigAppPackageName');
+  }
+
+  void rateApp() {
+    final InAppReview inAppReview = InAppReview.instance;
+    inAppReview.openStoreListing();
   }
 }
