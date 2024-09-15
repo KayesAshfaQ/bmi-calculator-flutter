@@ -23,7 +23,7 @@ class CircleIconButton extends StatelessWidget {
       onLongPressEnd: onLongPressEnd,
       child: RawMaterialButton(
         shape: const CircleBorder(),
-        fillColor: const Color(0xFF4C4F5E),
+        fillColor: kColorCircleButton,
         highlightColor: kColorBottomContainer.withOpacity(0.25),
         constraints: const BoxConstraints.tightFor(height: 50.0, width: 50.0),
         elevation: 6.0,

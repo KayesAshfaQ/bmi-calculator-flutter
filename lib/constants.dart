@@ -19,6 +19,7 @@ const kColorBottomContainer = Color(0xFFFF0067);
 const kColorActiveCard = Color(0xFF1D1E33);
 const kColorInActiveCard = Color(0xFF111328);
 const kColorLightGrey = Color(0xFF8D8E98);
+const kColorCircleButton = Color(0xFF4C4F5E);
 
 // ------------ text styles ------------
 const kTextStyleLabel = TextStyle(
