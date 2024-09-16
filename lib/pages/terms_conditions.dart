@@ -2,13 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class TermsConditions extends StatefulWidget {
-  const TermsConditions({super.key});
+  final String title;
+  final String url;
+
+  const TermsConditions({
+    super.key,
+    required this.title,
+    required this.url,
+  });
 
   @override
   State<TermsConditions> createState() => _TermsConditionsState();
 }
 
 class _TermsConditionsState extends State<TermsConditions> {
+
+  int progress = 0;
+
   @override
   Widget build(BuildContext context) {
     WebViewPlatform.instance;
@@ -31,10 +41,10 @@ class _TermsConditionsState extends State<TermsConditions> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://flutter.dev'));
+      ..loadRequest(Uri.parse('https://${widget.url}'));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter Simple Example')),
+      appBar: AppBar(title: Text(widget.title)),
       body: WebViewWidget(controller: controller),
     );
   }

@@ -163,7 +163,10 @@ class _SettingsPageState extends State<SettingsPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const TermsConditions(),
+                            builder: (context) => const TermsConditions(
+                              url: 'bmi.solobit.dev',
+                              title: 'Terms & Conditions',
+                            ),
                           ),
                         );
                       },
