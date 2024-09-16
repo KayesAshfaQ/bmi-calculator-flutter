@@ -157,21 +157,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       onTap: () => settingsController.reportBug(context),
                     ),
                     settingItem(
-                      'Terms & Conditions',
-                      FontAwesomeIcons.book,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TermsConditions(
-                              url: 'bmi.solobit.dev',
-                              title: 'Terms & Conditions',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    settingItem(
                       'About Us',
                       FontAwesomeIcons.circleInfo,
                       onTap: () {
@@ -179,6 +164,36 @@ class _SettingsPageState extends State<SettingsPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const AboutPage(),
+                          ),
+                        );
+                      },
+                    ),
+                    settingItem(
+                      'Privacy Policy',
+                      FontAwesomeIcons.shieldHalved,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TermsConditions(
+                              url: 'bmi.solobit.dev/privacy_policy.html',
+                              title: 'Privacy Policy',
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    settingItem(
+                      'Terms & Conditions',
+                      FontAwesomeIcons.book,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TermsConditions(
+                              url: 'bmi.solobit.dev/terms_and_condition.html',
+                              title: 'Terms & Conditions',
+                            ),
                           ),
                         );
                       },
