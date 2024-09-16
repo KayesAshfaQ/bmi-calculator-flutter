@@ -16,8 +16,8 @@ class AboutPage extends StatelessWidget {
         decoration: const BoxDecoration(
           color: kColorInActiveCard,
         ),
-        padding: const EdgeInsets.all(16.0),
         child: const SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
