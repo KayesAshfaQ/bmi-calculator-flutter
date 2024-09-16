@@ -1,6 +1,9 @@
+import 'package:bmi_calculator/utils/app_dialogues.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
 
@@ -57,5 +60,32 @@ class SettingsController {
   void rateApp() {
     final InAppReview inAppReview = InAppReview.instance;
     inAppReview.openStoreListing();
+  }
+
+  void reportBug(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    final titleController = TextEditingController();
+    final detailsController = TextEditingController();
+
+    AppDialogues().showReportBugDialog(
+      context,
+      formKey: formKey,
+      titleController: titleController,
+      descriptionController: detailsController,
+      onPressedReport: () {
+        if (formKey.currentState!.validate()) {
+          // send email
+          final Uri emailLaunchUri = Uri(
+            scheme: 'mailto',
+            path: 'dev.solobit@gmail.com',
+            queryParameters: {
+              'subject': titleController.text,
+              'body': detailsController.text,
+            },
+          );
+          launchUrl(emailLaunchUri);
+        }
+      },
+    );
   }
 }

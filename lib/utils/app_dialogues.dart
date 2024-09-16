@@ -76,4 +76,79 @@ class AppDialogues {
       },
     );
   }
+
+  Future<void> showReportBugDialog(
+    BuildContext context, {
+    Key? formKey,
+    TextEditingController? titleController,
+    TextEditingController? descriptionController,
+    void Function()? onPressedReport,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Report a bug"),
+          content: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: <Widget>[
+                  const Text("Please report any bugs or issues you encounter while using the app."),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a title';
+                      }
+                      return null;
+                    },
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextFormField(
+                    controller: descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a description';
+                      }
+                      return null;
+                    },
+                    minLines: 3,
+                    maxLines: 5,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: kColorLightGrey,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: kColorBottomContainer,
+              ),
+              onPressed: onPressedReport,
+              child: const Text('Report'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

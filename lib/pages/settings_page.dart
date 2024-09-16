@@ -154,7 +154,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     settingItem(
                       'Report Bug',
                       Icons.bug_report,
-                      onTap: () {},
+                      onTap: () => settingsController.reportBug(context),
                     ),
                     settingItem(
                       'Terms & Conditions',
