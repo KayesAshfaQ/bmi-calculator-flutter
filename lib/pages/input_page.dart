@@ -237,9 +237,31 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           children: [
-                            Text((height / 12).floor().toString(), style: kTextStyleNumber),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              transitionBuilder: (child, animation) => FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              ),
+                              child: Text(
+                                (height / 12).floor().toString(),
+                                key: ValueKey<int>((height / 12).floor()),
+                                style: kTextStyleNumber,
+                              ),
+                            ),
                             const Text('ft', style: kTextStyleLabel),
-                            Text((height % 12).toString(), style: kTextStyleNumber),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              transitionBuilder: (child, animation) => FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              ),
+                              child: Text(
+                                (height % 12).toString(),
+                                key: ValueKey<int>((height % 12).floor()),
+                                style: kTextStyleNumber,
+                              ),
+                            ),
                             const Text('in', style: kTextStyleLabel),
                           ],
                         ),
@@ -330,15 +352,23 @@ class _InputPageState extends State<InputPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('WEIGHT', style: kTextStyleLabel),
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(text: weight.toString(), style: kTextStyleNumber),
-              TextSpan(
-                text: ' ${selectedMetric.value}',
-                style: kTextStyleLabel.copyWith(fontSize: 10),
-              ),
-            ],
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+          child: RichText(
+            key: ValueKey(weight),
+            text: TextSpan(
+              children: [
+                TextSpan(text: weight.toString(), style: kTextStyleNumber),
+                TextSpan(
+                  text: ' ${selectedMetric.value}',
+                  style: kTextStyleLabel.copyWith(fontSize: 10),
+                ),
+              ],
+            ),
           ),
         ),
         Row(
@@ -368,7 +398,18 @@ class _InputPageState extends State<InputPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('AGE', style: kTextStyleLabel),
-        Text(age.toString(), style: kTextStyleNumber),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+          child: Text(
+            key: ValueKey(age),
+            age.toString(),
+            style: kTextStyleNumber,
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
