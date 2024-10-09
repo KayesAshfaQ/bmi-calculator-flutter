@@ -24,6 +24,7 @@ class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InputPageState createState() => _InputPageState();
 }
 
@@ -398,7 +399,6 @@ class _InputPageState extends State<InputPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleIconButton(
-              tooltip: 'Decrease Weight',
               icon: FontAwesomeIcons.minus,
               onPress: () => _updateUnit(true, false),
               onLongPress: () => _startUpdatingUnit(true, false),
@@ -406,7 +406,6 @@ class _InputPageState extends State<InputPage> {
             ),
             const SizedBox(width: 8.0),
             CircleIconButton(
-              tooltip: 'Increase Weight',
               icon: FontAwesomeIcons.plus,
               onPress: () => _updateUnit(true, true),
               onLongPress: () => _startUpdatingUnit(true, true),
