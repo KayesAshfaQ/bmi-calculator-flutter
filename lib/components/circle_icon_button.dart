@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CircleIconButton extends StatelessWidget {
-  final GlobalKey<TooltipState>? tooltipKey;
+  final GlobalKey<TooltipState>? tooltipKey = GlobalKey<TooltipState>();
   final String? tooltip;
   final IconData? icon;
   final VoidCallback? onPress;
   final VoidCallback? onLongPress;
   final Function(LongPressEndDetails)? onLongPressEnd;
 
-  const CircleIconButton({
+  CircleIconButton({
     super.key,
-    this.tooltipKey,
     this.tooltip = 'button',
     this.icon,
     this.onPress,
@@ -23,11 +22,18 @@ class CircleIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: onLongPress,
+      onLongPress: () {
+        // show tooltip
+        tooltipKey?.currentState?.ensureTooltipVisible();
+
+        // delay the long press action
+        Future.delayed(const Duration(milliseconds: 250), onLongPress);
+      },
       onLongPressEnd: onLongPressEnd,
       child: Tooltip(
         key: tooltipKey,
         message: tooltip,
+        triggerMode: TooltipTriggerMode.manual,
         child: RawMaterialButton(
           shape: const CircleBorder(),
           fillColor: kColorCircleButton,
