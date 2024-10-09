@@ -34,7 +34,9 @@ class CalculatorController {
   }
 
   String getResult() {
-    if (_bmi > 25) {
+    if (_bmi > 35) {
+      return 'OBESITY';
+    } else if (_bmi > 25) {
       return 'OVERWEIGHT';
     } else if (_bmi > 18.5) {
       return 'NORMAL';
@@ -44,7 +46,9 @@ class CalculatorController {
   }
 
   String getInterpretation() {
-    if (_bmi > 25) {
+    if (_bmi > 35) {
+      return 'Your BMI indicates obesity. It\'s important to consult with a healthcare provider for personalized advice.';
+    } else if (_bmi > 25) {
       return 'You have a higher then normal body weight! Try to exercise more.';
     } else if (_bmi > 18.5) {
       return 'You have normal body weight! Good Job.';
