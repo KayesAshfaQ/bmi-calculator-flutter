@@ -35,6 +35,7 @@ class _InputPageState extends State<InputPage> {
   int weight = 50;
   int age = 20;
 
+  bool _isAnimationEnable = true;
   Timer? _timer;
 
   @override
@@ -117,12 +118,22 @@ class _InputPageState extends State<InputPage> {
   }
 
   void _startUpdatingUnit(bool isWeight, bool isIncrement) {
+    // disable animation for long press
+    setState(() {
+      _isAnimationEnable = false;
+    });
+
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       _updateUnit(isWeight, isIncrement);
     });
   }
 
   void _stopUpdatingUnit(_) {
+    // enable animation after long press
+    setState(() {
+      _isAnimationEnable = true;
+    });
+
     _timer?.cancel();
   }
 
@@ -352,25 +363,37 @@ class _InputPageState extends State<InputPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('WEIGHT', style: kTextStyleLabel),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) => ScaleTransition(
-            scale: animation,
-            child: child,
-          ),
-          child: RichText(
-            key: ValueKey(weight),
-            text: TextSpan(
-              children: [
-                TextSpan(text: weight.toString(), style: kTextStyleNumber),
-                TextSpan(
-                  text: ' ${selectedMetric.value}',
-                  style: kTextStyleLabel.copyWith(fontSize: 10),
+        _isAnimationEnable
+            ? AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) => ScaleTransition(
+                  scale: animation,
+                  child: child,
                 ),
-              ],
-            ),
-          ),
-        ),
+                child: RichText(
+                  key: ValueKey(weight),
+                  text: TextSpan(
+                    children: [
+                      TextSpan(text: weight.toString(), style: kTextStyleNumber),
+                      TextSpan(
+                        text: ' ${selectedMetric.value}',
+                        style: kTextStyleLabel.copyWith(fontSize: 10),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(text: weight.toString(), style: kTextStyleNumber),
+                    TextSpan(
+                      text: ' ${selectedMetric.value}',
+                      style: kTextStyleLabel.copyWith(fontSize: 10),
+                    ),
+                  ],
+                ),
+              ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -400,18 +423,23 @@ class _InputPageState extends State<InputPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('AGE', style: kTextStyleLabel),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) => ScaleTransition(
-            scale: animation,
-            child: child,
-          ),
-          child: Text(
-            key: ValueKey(age),
-            age.toString(),
-            style: kTextStyleNumber,
-          ),
-        ),
+        _isAnimationEnable
+            ? AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) => ScaleTransition(
+                  scale: animation,
+                  child: child,
+                ),
+                child: Text(
+                  key: ValueKey(age),
+                  age.toString(),
+                  style: kTextStyleNumber,
+                ),
+              )
+            : Text(
+                age.toString(),
+                style: kTextStyleNumber,
+              ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
